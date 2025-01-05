@@ -64,8 +64,7 @@ class Highlights extends React.Component {
             <div className = "main-content">
                 <h1>ESGenius</h1>
                 <p class = "project-description">
-                    ESG Data-Driven Decisionsad Support System <br />
-                    Full-stack Web Application with Machine Learning
+                    this is a testing highlight.
                 </p>
                 <p class = "project-team">
                     <span class = "project-team-highlight">Supervisor:</span> Dr. Cheng Reynold <br />
