@@ -51,7 +51,7 @@ class MainContent extends React.Component {
                 <p>
                 <span style={{fontWeight: 'bold'}}>Supervisor:</span> Dr. Cheng Reynold <br />
                 <span style={{fontWeight: 'bold'}}>Group Members:</span>
-                Ko Man Sing, Ng Tsz Wai Andrew, Chan Cheuk Hei, Chau Chun Yiu Daniel
+                Ko Man Sing, Ng Tsz Wai Andrew, Chan Cheuk Hei, Chau Chun Yiu
                 </p>
             </div>
         )
