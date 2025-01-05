@@ -51,7 +51,7 @@ class MainContent extends React.Component {
                 <p>
                 <span style={{fontWeight: 'bold'}}>Supervisor:</span> Dr. Cheng Reynold <br />
                 <span style={{fontWeight: 'bold'}}>Group Members:</span>
-                Ko Man Sing, Ng Tsz Wai Andrew, Chan Cheuk Hei, Chau Chun Yiu
+                Ko Man Sing, Ng Tsz Wai Andrew, Chan Cheuk Hei, Chau Chun Yiu Daniel
                 </p>
             </div>
         )
@@ -102,6 +102,7 @@ class App extends React.Component {
             <div className="mainClass">
                 <TopNavigation connected={this.state.connected} setConnectionState={this.setConnectionState}/>
                 <MainContent />
+                <Highlights />
                 <div className="wave"></div>
                 <div className="wave"></div>
                 <div className="wave"></div>
