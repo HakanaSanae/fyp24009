@@ -4,15 +4,17 @@ phases:
   install:
     commands:
       - echo "Installing dependencies"
+      - cd frontend
       - npm install
   build:
     commands:
       - echo "Building the React application"
+      - cd frontend
       - npm run build
   post_build:
     commands:
       - echo "Build completed on `date`"
 artifacts:
   files:
-    - 'frontend/**/*'
+    - '**/*'
   base-directory: frontend/build
