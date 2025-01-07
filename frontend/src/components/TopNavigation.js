@@ -10,14 +10,14 @@ function TopNavigation({account}) {
                 <img id="nav-icon" src= {icon}></img>
                 <span id="proj_Name">ESGenius</span>
             </div>
-            <div class="topNavButtons">
+            <div className="topNavButtons">
                 <a href="/">
-                    <Button variant="primary" class="top-nav-button">
+                    <Button variant="primary" className="top-nav-button">
                         Home
                     </Button>
                 </a>
-                <Button variant="primary" class="top-nav-button">Documents</Button>
-                <Button variant="primary" class="top-nav-button">Project Progress</Button>
+                <Button variant="primary" className="top-nav-button">Documents</Button>
+                <Button variant="primary" className="top-nav-button">Project Progress</Button>
                 {
                     account ? 
                     (

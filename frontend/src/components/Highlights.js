@@ -5,12 +5,12 @@ class Highlights extends React.Component {
         return (
             <div className = "main-content">
                 <h1>ESGenius</h1>
-                <p class = "project-description">
+                <p className = "project-description">
                     this is a testing highlight.
                 </p>
-                <p class = "project-team">
-                    <span class = "project-team-highlight">Supervisor:</span> Dr. Cheng Reynold <br />
-                    <span class = "project-team-highlight">Group Members:</span>
+                <p className = "project-team">
+                    <span className = "project-team-highlight">Supervisor:</span> Dr. Cheng Reynold <br />
+                    <span className = "project-team-highlight">Group Members:</span>
                     Ko Man Sing, Ng Tsz Wai Andrew, Chan Cheuk Hei, Chau Chun Yiu
                 </p>
             </div>

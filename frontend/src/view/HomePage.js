@@ -8,7 +8,7 @@ class MainPage extends React.Component {
             <div className="mainClass">
                 <div className="main-content">
                     <h1>ESGenius</h1>
-                    <p class ="project-description">
+                    <p className ="project-description">
                         ESG Data-Driven Decision Support System <br />
                         Full-stack Web Application with Machine Learning
                     </p>
