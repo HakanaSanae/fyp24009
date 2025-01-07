@@ -6,6 +6,7 @@ phases:
       - echo "Installing dependencies"
       - cd frontend
       - npm install
+      - npm install react-router-dom
   build:
     commands:
       - echo "Building the React application"
