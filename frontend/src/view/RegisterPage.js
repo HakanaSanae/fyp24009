@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import LoginForm from "../components/LoginForm.js";
+import RegisterForm from "../components/RegisterForm.js";
 import { useNavigate } from 'react-router-dom';
 
-function LoginPage({account, setAccount}) { 
+function RegisterPage({account, setAccount}) { 
     const navigate = useNavigate();
     
     const loginStatus = () => {
@@ -25,7 +25,7 @@ function LoginPage({account, setAccount}) {
                     <p>Redirecting to dashboard...</p>
                 ) : 
                 (
-                    <LoginForm setAccount = {setAccount}/>
+                    <RegisterForm setAccount = {setAccount}/>
                 )
                     
             }
@@ -33,4 +33,4 @@ function LoginPage({account, setAccount}) {
     )
 }
 
-export default LoginPage;
+export default RegisterPage;

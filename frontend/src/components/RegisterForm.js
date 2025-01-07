@@ -51,52 +51,58 @@ function RegistrationForm({setAccount}) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
-      </div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>User Name</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
+        </div>
 
-      <div>
-        <label>Email Address</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
-      </div>
+        <div>
+          <label>Email Address</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
+        </div>
 
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
 
-      <div>
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
-        {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
-      </div>
+        <div>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+          {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
+        </div>
 
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit">Register</button>
+      </form>
+      <p>
+        Already have an account? Click <a href="/login">here</a> to login.
+      </p>
+    </div>
+    
   );
 }
 
