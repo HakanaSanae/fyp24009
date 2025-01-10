@@ -74,6 +74,7 @@ form{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
 }
 
 .form-input-error-container{
@@ -81,6 +82,13 @@ form{
   flex-direction: column;
   text-align: center;
   flex: 0; 
+}
+
+.error-message { 
+  color: red; 
+  margin-left: auto; 
+  margin-right: auto;
+  margin-bottom: 0px;
 }
 
 .form-item button {
