@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import RegisterForm from "../components/RegisterForm.js";
+import RegisterForm from "../component/RegisterForm.js";
 import { useNavigate } from 'react-router-dom';
 
 function RegisterPage({account, setAccount}) { 

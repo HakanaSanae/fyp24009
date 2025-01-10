@@ -1,5 +1,5 @@
 import React from "react";
-import Highlights from "../components/Highlights";
+import Highlights from "../component/Highlights";
 import icon from "../Picture-1.jpg";
 
 class MainPage extends React.Component {

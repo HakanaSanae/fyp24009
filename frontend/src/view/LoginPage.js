@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import LoginForm from "../components/LoginForm.js";
+import LoginForm from "../component/LoginForm.js";
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage({account, setAccount}) { 

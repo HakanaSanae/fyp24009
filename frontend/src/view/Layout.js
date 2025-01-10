@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import TopNavigation from '../components/TopNavigation';
+import TopNavigation from '../component/TopNavigation';
 
 function Layout({account, setAccount}) {
   return (

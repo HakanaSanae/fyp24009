@@ -6,7 +6,7 @@ import Layout from '../view/Layout.js';
 import { Routes, Route } from "react-router-dom";
 import LoginPage from '../view/LoginPage.js';
 import RegisterPage from '../view/RegisterPage.js';
-import ESGDashBoard from '../components/ESGDashBoard.js';
+import ESGDashBoard from '../component/ESGDashBoard.js';
 
 function App() {
     const acc = localStorage.getItem('account');
