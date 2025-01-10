@@ -13,7 +13,6 @@ function RegistrationForm({setAccount}) {
 
   const [errors, setErrors] = useState({});
 
-
   //make select element same size as the input fields
   useEffect(()=>{
     const select = document.querySelector('select');
@@ -31,13 +30,16 @@ function RegistrationForm({setAccount}) {
   const validate = () => {
     const newErrors = {};
 
-    // Email validation
     if(!formData.username) {
       newErrors.username = 'Name cannot be empty.';
     } 
 
     if (!formData.email) {
       newErrors.email = 'Email address cannot be empty.';
+    } else {
+      if (!formData.email.endsWith('.com') && !formData.email.endsWith('.hk')) {
+        newErrors.email = 'Invalid email address.';
+      }
     }
 
     // Password validation
