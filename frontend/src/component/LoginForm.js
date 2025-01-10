@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import apiClient from '../interface/apiClient';
 
-
 function LoginForm({setAccount}){
 
     const [formData, setFormData] = useState({
@@ -36,25 +35,30 @@ function LoginForm({setAccount}){
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input 
-                    type="email" 
-                    name="email" 
-                    value = {formData.email}
-                    onChange= {handleChange}
-                    required 
-                />
-
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange} 
-                    required 
-                />
-
-                <button type="submit">Login</button>
+                <div className="form-item">
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        value = {formData.email}
+                        onChange= {handleChange}
+                        required 
+                    />
+                </div>
+                <div className="form-item">
+                    <label for="password">Password:</label>
+                    <input 
+                        type="password" 
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange} 
+                        required 
+                    />
+                </div>
+                <div className="form-item">
+                    <button type="submit">Login</button>
+                </div>
+                
             </form>
             
             <p>

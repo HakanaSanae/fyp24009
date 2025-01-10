@@ -13,6 +13,10 @@ function RegistrationForm({setAccount}) {
 
   const [errors, setErrors] = useState({});
 
+  useEffect(()=>{
+
+  }, [])
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -75,7 +79,7 @@ function RegistrationForm({setAccount}) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className = "form-item">
           <label>User/Company Name</label>
           <input
             type="username"
@@ -86,7 +90,7 @@ function RegistrationForm({setAccount}) {
           {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
         </div>
 
-        <div>
+        <div className = "form-item">
           <label>Email Address</label>
           <input
             type="email"
@@ -97,7 +101,7 @@ function RegistrationForm({setAccount}) {
           {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
         </div>
 
-        <div>
+        <div className = "form-item">
           <label>Password</label>
           <input
             type="password"
@@ -107,7 +111,7 @@ function RegistrationForm({setAccount}) {
           />
         </div>
 
-        <div>
+        <div className = "form-item">
           <label>Confirm Password</label>
           <input
             type="password"
@@ -118,7 +122,7 @@ function RegistrationForm({setAccount}) {
           {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
         </div>
 
-        <div>
+        <div className = "form-item">
           <label htmlFor="type">Account Type:</label>
           <select
             name="type"
@@ -131,7 +135,10 @@ function RegistrationForm({setAccount}) {
           </select>
         </div>
 
-        <button type="submit">Register</button>
+        <div className = "form-item">
+          <button type="submit">Register</button>
+        </div>
+        
       </form>
       <p>
         Already have an account? Click <a href="/login">here</a> to login.

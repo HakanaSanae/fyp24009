@@ -29,8 +29,7 @@ function LoginPage({account, setAccount}) {
                 ) : 
                 (
                     <LoginForm setAccount = {setAccount}/>
-                )
-                    
+                )   
             }
         </div>
     )
