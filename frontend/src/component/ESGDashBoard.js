@@ -24,7 +24,7 @@ function ESGDashBoard ({ account }) {
     return(
         loginStatus() ? 
         (
-            <div className='tableauPlaceholder' id='viz1736230714700' style={{position: 'relative'}}>
+            <div className='tableauPlaceholder' id='viz1736230714700' style={{position: 'relative', margin: '30px 0px'}}>
                 <noscript>
                     <a href='#'>
                         <img alt='ESGenius ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ES&#47;ESG_17362298565400&#47;Story1&#47;1_rss.png' style='border: none' />
