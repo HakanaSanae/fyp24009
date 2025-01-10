@@ -44,6 +44,9 @@
 }
 
 main {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
   flex: 1; 
 }
 
@@ -81,21 +84,24 @@ main {
 .mainContent {
   width: 80vw;
   margin: 10vh auto;
+  flex: 1; 
 }
 
 .project-highlights-container {
-  display: grid; 
-  grid-template-columns: auto auto; 
+  display: grid;
+  margin: 0px 50px;
+  grid-template-columns: 1fr 1fr; 
 }
 
 .project-highlights { 
-  margin: 10px; 
+  margin: 20px 30px; 
+  text-align: center;
 }
 
-.mainClass {
+/* .mainClass {
   width: 85vw;
   margin: 2vh auto;
-}
+} */
 
 .top-nav{
   display: flex; 
@@ -105,9 +111,10 @@ main {
 
 .main-content{
   display:flex; 
+  flex: 1; 
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 body {

@@ -31,23 +31,27 @@ function TopNavigation({account, setAccount}) {
                 {
                     account ? 
                     (
-                        <>
-                            <a href="/dashboard">
-                                <Button variant="primary">
-                                    {account}
-                                </Button> 
-                            </a>
-                            <Button variant="primary" onClick = {logout}>
-                                Logout
+                        
+                        <a href="/dashboard">
+                            <Button variant="primary" className="top-nav-button">
+                                {account}
                             </Button> 
-                        </>
+                        </a>
+                        
+                    ) : null     
+                } 
+                {    
+                    account ? (
+                        <Button variant="primary" className="top-nav-button" onClick = {logout}>
+                            Logout
+                        </Button> 
                     ) : (
                         <a href="/login">
-                            <Button variant="primary">
+                            <Button className="top-nav-button" variant="primary">
                                 Login
                             </Button>
                         </a>
-                    ) 
+                    )
                 }
             </div>
         </div>
