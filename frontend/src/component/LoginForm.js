@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import apiClient from '../interface/apiClient';
+
 
 function LoginForm({setAccount}){
 
@@ -18,12 +19,10 @@ function LoginForm({setAccount}){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/login', 
-            {
+            const data = await apiClient.login({
                 email: formData.email,
                 password: formData.password,
             }); 
-            const data = response.data; 
             if (data.success) {
                 localStorage.setItem('account', data.name);
                 setAccount(data.name);

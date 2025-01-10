@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import icon  from '../Picture-1.jpg'; 
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '../interface/apiClient';
 
 function TopNavigation({account, setAccount}) {
     const navigate = useNavigate();
 
     const logout = async () => {
-        const response = await axios('http://127.0.0.1:8000/api/logout'); 
-        if (response.data.success){ 
+        const data = await apiClient.logout(); 
+        if (data.success){ 
             localStorage.removeItem('account');
             setAccount(null);
-            navigate('/')
+            navigate('/');
         }
     }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import apiClient from '../interface/apiClient';
 
 function RegistrationForm({setAccount}) {
   const [formData, setFormData] = useState({
@@ -48,22 +48,19 @@ function RegistrationForm({setAccount}) {
     return Object.keys(newErrors).length === 0;
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (validate()) {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/register', 
-          {
+        const data = await apiClient.register({
             username: formData.username,
             email: formData.email,
             password: formData.password,
             type: formData.type
-          }
-        )
-        const data = response.data;
+        }); 
         if (data.success) {
+          localStorage.setItem('account', data.name);
             setAccount(data.name);
             console.log('Registration successful:', data);
         } else {
