@@ -15,14 +15,18 @@ function RegisterPage({account, setAccount}) {
         if (loginStatus()) {
             navigate('/dashboard');
         }
-    }, [])
+    }, [account])
 
     return (
         <div>
             {
                 loginStatus() ? 
                 (
-                    <p>Redirecting to dashboard...</p>
+                    <>
+                        <p>Redirecting to dashboard...</p>
+                        <p>If you are not redirected, click <a href="/dashboard">here</a></p>
+                    </>
+                    
                 ) : 
                 (
                     <RegisterForm setAccount = {setAccount}/>

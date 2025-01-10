@@ -2,12 +2,12 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopNavigation from '../components/TopNavigation';
 
-function Layout({account}) {
+function Layout({account, setAccount}) {
   return (
     <div>
       <header>
         <nav>
-           <TopNavigation account = {account}/> 
+           <TopNavigation account = {account} setAccount = {setAccount}/> 
         </nav>
       </header>
       <main>

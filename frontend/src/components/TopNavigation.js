@@ -1,8 +1,20 @@
 import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import icon  from '../Picture-1.jpg'; 
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function TopNavigation({account}) {
+function TopNavigation({account, setAccount}) {
+    const navigate = useNavigate();
+
+    const logout = async () => {
+        const response = await axios('http://127.0.0.1:8000/api/logout'); 
+        if (response.data.success){ 
+            localStorage.removeItem('account');
+            setAccount(null);
+            navigate('/')
+        }
+    }
 
     return (
         <div className="top-nav">
@@ -16,16 +28,19 @@ function TopNavigation({account}) {
                         Home
                     </Button>
                 </a>
-                <Button variant="primary" className="top-nav-button">Documents</Button>
-                <Button variant="primary" className="top-nav-button">Project Progress</Button>
                 {
                     account ? 
                     (
-                        <a href="/dashboard">
-                            <Button variant="primary">
-                                {account}
+                        <>
+                            <a href="/dashboard">
+                                <Button variant="primary">
+                                    {account}
+                                </Button> 
+                            </a>
+                            <Button variant="primary" onClick = {logout}>
+                                Logout
                             </Button> 
-                        </a>
+                        </>
                     ) : (
                         <a href="/login">
                             <Button variant="primary">
