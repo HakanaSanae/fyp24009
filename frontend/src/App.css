@@ -64,7 +64,7 @@ form{
   border-style: solid;
   padding: 20px;
   margin-bottom: 40px; 
-
+  width: 30vw;
 }
 
 .form-item {
@@ -74,7 +74,13 @@ form{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
+}
+
+.form-input-error-container{
+  display: flex; 
+  flex-direction: column;
+  text-align: center;
+  flex: 0; 
 }
 
 .form-item button {

@@ -13,8 +13,12 @@ function RegistrationForm({setAccount}) {
 
   const [errors, setErrors] = useState({});
 
-  useEffect(()=>{
 
+  //make select element same size as the input fields
+  useEffect(()=>{
+    const select = document.querySelector('select');
+    const input = document.querySelector('input');
+    select.style.width = input.clientWidth + 'px';
   }, [])
 
   const handleChange = (e) => {
@@ -38,7 +42,7 @@ function RegistrationForm({setAccount}) {
 
     // Password validation
     if (formData.password !== formData.confirmPassword) {
-      newErrors.password = 'Passwords do not match.';
+      newErrors.confirmPassword = 'Passwords do not match.';
     } else if (formData.password.length < 8 || formData.password.length > 16 || !/\d/.test(formData.password) || !/[a-zA-Z]/.test(formData.password)) {
       newErrors.password = 'Password must be 8 to 16 characters long and contain both letters and numbers.';
     }
@@ -81,45 +85,58 @@ function RegistrationForm({setAccount}) {
       <form onSubmit={handleSubmit}>
         <div className = "form-item">
           <label>User/Company Name</label>
-          <input
-            type="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
+          <div className = "form-input-error-container">
+            <input
+              type="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
+          </div>
+          
         </div>
 
         <div className = "form-item">
           <label>Email Address</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
+          <div className = "form-input-error-container">
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
+          </div>
+          
         </div>
 
         <div className = "form-item">
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+          <div className = "form-input-error-container">
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
+          </div>
+          
         </div>
 
         <div className = "form-item">
           <label>Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-          {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
+          <div className = "form-input-error-container">
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            {errors.confirmPassword && <div style={{ color: 'red' }}>{errors.confirmPassword}</div>}
+          </div>
+          
         </div>
 
         <div className = "form-item">
@@ -138,7 +155,7 @@ function RegistrationForm({setAccount}) {
         <div className = "form-item">
           <button type="submit">Register</button>
         </div>
-        
+
       </form>
       <p>
         Already have an account? Click <a href="/login">here</a> to login.
