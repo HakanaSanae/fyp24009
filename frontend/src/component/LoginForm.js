@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import apiClient from '../interface/apiClient';
 
 function LoginForm({setAccount}){
+    const [errorMes, setErrorMes] = useState(null);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -25,6 +26,8 @@ function LoginForm({setAccount}){
             if (data.success) {
                 localStorage.setItem('account', data.name);
                 setAccount(data.name);
+            } else {
+                setErrorMes("Email or Password incorrect. <br> Please try again."); 
             }
             
         } catch (error) {
@@ -55,13 +58,20 @@ function LoginForm({setAccount}){
                         required 
                     />
                 </div>
+
+                {
+                    errorMes ? <div className="form-item">
+                        <p className="error-message" style={{color: 'red'}} dangerouslySetInnerHTML={{ __html: errorMes }}/>
+                    </div> : null
+                }
+
                 <div className="form-item">
                     <button type="submit">Login</button>
                 </div>
                 
             </form>
             
-            <p>
+            <p >
                 Don't have an account? Click <a href="/register">here</a> to register. 
             </p>
         </div>
