@@ -36,6 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.layout {
+  display: flex; 
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+main {
+  flex: 1; 
+}
+
 .topNavButtons{
   float:right; 
 }
@@ -70,6 +81,15 @@
 .mainContent {
   width: 80vw;
   margin: 10vh auto;
+}
+
+.project-highlights-container {
+  display: grid; 
+  grid-template-columns: auto auto; 
+}
+
+.project-highlights { 
+  margin: 10px; 
 }
 
 .mainClass {

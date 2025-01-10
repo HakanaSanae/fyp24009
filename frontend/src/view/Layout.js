@@ -4,7 +4,7 @@ import TopNavigation from '../component/TopNavigation';
 
 function Layout({account, setAccount}) {
   return (
-    <div>
+    <div className="layout">
       <header>
         <nav>
            <TopNavigation account = {account} setAccount = {setAccount}/> 
