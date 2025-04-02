@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {Button} from 'react-bootstrap';
-import icon  from '../Picture-1.jpg'; 
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import icon from '../Picture-1.jpg';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../interface/apiClient';
 
-function TopNavigation({account, setAccount}) {
+function TopNavigation({ account, setAccount }) {
     const navigate = useNavigate();
 
     const logout = async () => {
-        const data = await apiClient.logout(); 
-        if (data.success){ 
+        const data = await apiClient.logout();
+        if (data.success) {
             localStorage.removeItem('account');
             setAccount(null);
             navigate('/');
@@ -19,7 +19,7 @@ function TopNavigation({account, setAccount}) {
     return (
         <div className="top-nav">
             <div>
-                <img id="nav-icon" src= {icon}></img>
+                <img id="nav-icon" src={icon}></img>
                 <span id="proj_Name">ESGenius</span>
             </div>
             <div className="topNavButtons">
@@ -29,22 +29,50 @@ function TopNavigation({account, setAccount}) {
                     </Button>
                 </a>
                 {
-                    account ? 
-                    (
-                        
-                        <a href="/dashboard">
-                            <Button variant="primary" className="top-nav-button">
-                                {account}
-                            </Button> 
-                        </a>
-                        
-                    ) : null     
-                } 
-                {    
+                    account ?
+                        (
+
+                            <a href="/dashboard">
+                                <Button variant="primary" className="top-nav-button">
+                                    ESG Dashboard
+                                </Button>
+                            </a>
+
+                        ) : null
+                }
+
+                {
+
+                    account ?
+                        (
+
+                            <a href="/ESG-Risk-Analysis">
+                                <Button variant="primary" className="top-nav-button">
+                                    ESG Risk Analysis
+                                </Button>
+                            </a>
+
+                        ) : null
+                }
+
+                {
+                    account ?
+                        (
+
+                            <a href="/account">
+                                <Button variant="primary" className="top-nav-button">
+                                    {account}
+                                </Button>
+                            </a>
+
+                        ) : null
+                }
+
+                {
                     account ? (
-                        <Button variant="primary" className="top-nav-button" onClick = {logout}>
+                        <Button variant="primary" className="top-nav-button" onClick={logout}>
                             Logout
-                        </Button> 
+                        </Button>
                     ) : (
                         <a href="/login">
                             <Button className="top-nav-button" variant="primary">
@@ -53,6 +81,8 @@ function TopNavigation({account, setAccount}) {
                         </a>
                     )
                 }
+
+
             </div>
         </div>
     )
