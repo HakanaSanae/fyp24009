@@ -48,7 +48,7 @@ function TopNavigation({ account, setAccount }) {
 
                             <a href="/ESG-Risk-Analysis">
                                 <Button variant="primary" className="top-nav-button">
-                                    ESG Risk Analysis
+                                    ESG Risk Analysis
                                 </Button>
                             </a>
 
