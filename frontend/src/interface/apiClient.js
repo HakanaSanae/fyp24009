@@ -7,40 +7,32 @@ class apiClient {
 
     async login(formData) {
         const response = await axios.post(`${this.backendPath}/login`, formData); 
-        const data = this.#datacheck(response); 
-        if (data) {
-            return data; 
-        } else {
-            throw new Error('Login failed');
-        }
+        return this.datacheck(response, 'Login failed'); 
+        
     }
 
     async register(formData) {
         const response = await axios.post(`${this.backendPath}/register`, formData); 
-        const data = this.#datacheck(response); 
-        if (data) {
-            return data; 
-        } else {
-            throw new Error('Register failed');
-        }
+        return this.datacheck(response, 'Register failed'); 
     }
 
     async logout() {
         const response = await axios.get(`${this.backendPath}/logout`); 
-        const data = this.#datacheck(response)
-        if (data) {
-            return data; 
-        } else {
-            throw new Error('Logout failed');
-        }
+        return this.datacheck(response, 'Logout failed')
+       
+    }
+
+    async submitRiskAnalysisFile(formData) {
+        const response = await axios.post(`${this.backendPath}/risk-analysis`, formData); 
+        return this.datacheck(response, 'File upload failed');
     }
 
     //private methods 
-    #datacheck(response){
+    datacheck(response, error = 'Internal Server Error'){
         if (response.status == 200) {
             return response.data;  
         } else {
-            return null; 
+            throw new Error(error); 
         }
     }
 }
