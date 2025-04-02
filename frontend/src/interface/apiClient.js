@@ -2,7 +2,8 @@ import axios from 'axios';
 
 class apiClient {
     constructor() {
-       this.backendPath = 'http://fyp-laravel-server2-env.eba-3gaqk4pn.ap-northeast-3.elasticbeanstalk.com/api'; 
+        this.testing = true; 
+        this.backendPath = this.testing ? 'http://localhost:8000/api' : 'http://fyp-laravel-server2-env.eba-3gaqk4pn.ap-northeast-3.elasticbeanstalk.com/api'; 
     }
 
     async login(formData) {
