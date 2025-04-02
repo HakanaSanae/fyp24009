@@ -8,9 +8,12 @@ import LoginPage from '../view/LoginPage.js';
 import RegisterPage from '../view/RegisterPage.js';
 import ESGDashBoard from '../component/ESGDashBoard.js';
 import HomePage from '../view/HomePage.js';
+import RiskAnalysisPage from '../view/RiskAnalysisPage.js';
 
 function App() {
     const acc = localStorage.getItem('account');
+
+    //TODO change to use cookie with JWT later
     const [account, setAccount] = useState(acc); 
 
     return (
@@ -25,6 +28,7 @@ function App() {
                     <Route path="ESG-Score-Breakdown" element={<h1>ESG Score breakdown</h1>} />
                     <Route path="Sector-Industry-Leaders" element={<h1>ESG Sector industry leaders</h1>} />
                 </Route>
+                <Route path="ESG-Risk-Analysis" element={<RiskAnalysisPage />} />
                 <Route path="register" element={<RegisterPage account = {account} setAccount = {setAccount}/>} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
