@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import apiClient from '../interface/apiClient';
 
 function RegistrationForm({setAccount}) {
