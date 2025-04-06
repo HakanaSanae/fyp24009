@@ -46,7 +46,7 @@ function TopNavigation({ account, setAccount }) {
                     account ?
                         (
 
-                            <a href="/ESG-Risk-Analysis">
+                            <a href="/dashboard/ESG-Risk-Analysis">
                                 <Button variant="primary" className="top-nav-button">
                                     ESG Risk Analysis
                                 </Button>
