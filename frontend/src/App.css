@@ -205,18 +205,29 @@ footer {
   position: fixed;
   bottom: 0;
   text-align: center;
-  margin-left: 5vw; 
+  margin-left: 2vw; 
 }
 
 .home-page{
   display: flex; 
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   flex: 1; 
   width: 30vw;
 }
 
+.home-page-item-container{
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 2vw 2vh;
+  width: 80vw;
+  flex: 0; 
+}
+
 .home-buttons-container{
+  text-align: center;
   display:flex; 
   flex-direction: column;
   justify-content: space-evenly;
@@ -226,9 +237,11 @@ footer {
   border-color: rgb(41, 186, 41);
   border-width: 5px;
   border-style: solid;
+  background-color: white;
   padding: 20px;
   height: 15vh; 
-  padding: 10px 0px; 
+  padding: 1vh 0px; 
+  margin: 2vh 0; 
 }
 
 button{
@@ -246,9 +259,6 @@ button{
 a {
   text-decoration: none;
 }
-
-
-
 
 @keyframes gradient {
   0% {
@@ -288,6 +298,39 @@ a {
   opacity: 0.9;
 }
 
+.risk-analysis-information{
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  width: 70vw; 
+  border-radius: 15px;
+  border-color: rgb(41, 186, 41);
+  border-width: 5px;
+  border-style: solid;
+  background-color: white;
+  padding: 2vh 5vw;
+  text-align: center;
+  margin: 2vh 0px; 
+}
+
+.risk-analysis-page input {
+  margin: 2vh 0; 
+}
+
+.risk-analysis-item{
+  text-align: left;
+}
+
+.risk-analysis-item h3 {
+  color: rgb(211, 25, 25);
+}
+
+.risk-analysis-title{
+  justify-self: center;
+  align-self: center;
+}
+
 @keyframes wave {
   2% {
       transform: translateX(1);
@@ -307,5 +350,17 @@ a {
 
   100% {
       transform: translateX(1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .home-page-item-container{
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+@media (max-width: 800px) {
+  .home-page-item-container{
+    grid-template-columns: auto;
   }
 }
