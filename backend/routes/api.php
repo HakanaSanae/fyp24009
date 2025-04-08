@@ -14,7 +14,7 @@ $router->middleware(['auth']) -> group(
     function ( $router ) {
         $router->get('/logout', [AccountController::class, 'logout']);
         $router->post('/risk-analysis', [fileUploadController::class, 'riskAnalysis']);
-        $router->get('/user-info', [AccountController::class, 'getUserInfo']);
+        $router->get('/user-info', [AccountController::class, 'fetchUserInfo']);
         $router->put('/update-user-info', [AccountController::class, 'updateUserInfo']);
 
     }
