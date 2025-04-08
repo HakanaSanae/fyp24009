@@ -20,7 +20,7 @@ class CorsHelper
         $origin = $request->headers->get('Origin');
 
         $headers = [
-            'Access-Control-Allow-Methods' => '*',
+            'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Credentials' => 'true',
             'Access-Control-Allow-Headers' => 'X-Requested-With,Content-Type,X-Token-Auth,Authorization,X-XSRF-TOKEN',
             'Accept' => 'application/json',
