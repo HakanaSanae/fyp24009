@@ -1,10 +1,11 @@
 import React, { useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../interface/apiClient';
+import { submitRiskAnalysisFile } from '../interface/apiClient';
 import RiskAnalysisInformation from '../component/RiskAnalysisInformation';
 
 function RiskAnalysisPage() {
-
+    
+    const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [E_data, setEData] = useState(null);
     const [S_data, setSData] = useState(null);  
@@ -33,7 +34,7 @@ function RiskAnalysisPage() {
         formData.append('file', file);
 
         try {
-            const response = await apiClient.submitRiskAnalysisFile(formData);
+            const response = await submitRiskAnalysisFile(formData, navigate);
 
             if (response.success) {
                 console.log("File uploaded successfully");

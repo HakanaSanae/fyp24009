@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import icon from '../Picture-1.jpg';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../interface/apiClient';
+import { logout } from '../interface/apiClient';
 
-function TopNavigation({ account, setAccount }) {
+function TopNavigation({ account }) {
     const navigate = useNavigate();
 
-    const logout = async () => {
-        const data = await apiClient.logout();
+    const logoutAction = async () => {
+        const data = await logout(navigate);
         if (data.success) {
             localStorage.removeItem('account');
-            setAccount(null);
-            navigate('/');
+            navigate('/login');
+        } else {
+            console.log(data.message);
+            localStorage.removeItem('account');
+            navigate('/login');
         }
     }
 
@@ -70,7 +73,7 @@ function TopNavigation({ account, setAccount }) {
 
                 {
                     account ? (
-                        <Button variant="primary" className="top-nav-button" onClick={logout}>
+                        <Button variant="primary" className="top-nav-button" onClick={logoutAction}>
                             Logout
                         </Button>
                     ) : (
