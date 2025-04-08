@@ -30,7 +30,7 @@ function App() {
                 <Route index element={<MainPage />} />
                 <Route path="login" element={ account ? <Navigate to='/dashboard' replace/> : <LoginPage />} />
                 <Route path="register" element={ account ? <Navigate to='/dashboard' replace/> : <RegisterPage /> } />
-                <Route path="account" element={ account ? <AccountPage /> : <Navigate to='/login' replace />} />
+                <Route path="account" element={ account ? <AccountPage setAccount={setAccount}/> : <Navigate to='/login' replace />} />
                 <Route path="dashboard" element={ account ? <DashboardRoutes account={account} /> : <Navigate to="/login" replace />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
