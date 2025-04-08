@@ -8,7 +8,7 @@ function HomePage() {
                 ESG Dashboards
             </h1>
             <div className="home-page-item-container">
-                <div class="home-buttons-container">
+                <div className="home-buttons-container">
                     <h4>
                         Overall ESG Performance
                     </h4>
@@ -19,31 +19,31 @@ function HomePage() {
                     </a>
                 </div>
 
-                <div class="home-buttons-container">
+                <div className="home-buttons-container">
                     <h4>
-                        Sector-based Comparison
+                        Year-over-Year ESG Change
                     </h4>
-                    <a href="/dashboard/Sector-based-Comparison">
+                    <a href="/dashboard/YOY-ESG-Change">
                         <button variant="primary">
                             View Here
                         </button>
                     </a>
                 </div>
 
-                <div class="home-buttons-container">
+                <div className="home-buttons-container">
                     <h4>
-                        Top & Bottom Performers
+                        Sector-wise ESG Performance
                     </h4>
-                    <a href="/dashboard/Top-Bottom-Performers">
+                    <a href="/dashboard/Sector-Wise-ESG-Performance">
                         <button variant="primary">
                             View Here
                         </button>
                     </a>
                 </div>
 
-                <div class="home-buttons-container">
+                <div className="home-buttons-container">
                     <h4>
-                        ESG Score Breakdown
+                        E, S, G Score Breakdown
                     </h4>
                     <a href="/dashboard/ESG-Score-Breakdown">
                         <button variant="primary">
@@ -52,18 +52,29 @@ function HomePage() {
                     </a>
                 </div>
 
-                <div class="home-buttons-container">
+                <div className="home-buttons-container">
                     <h4>
-                        Sector & Industry Leaders
+                        ESG Score Distribution
                     </h4>
-                    <a href="/dashboard/Sector-Industry-Leaders">
-                        <button variant="primary" class="home-buttons">
+                    <a href="/dashboard/ESG-Score-Distribution">
+                        <button variant="primary" className="home-buttons">
                             View Here
                         </button>
                     </a>
                 </div>
 
-                <div class="home-buttons-container">
+                <div className="home-buttons-container">
+                    <h4>
+                        Custom Comparison
+                    </h4>
+                    <a href="/dashboard/Custom-Comparison">
+                        <button variant="primary" className="home-buttons">
+                            View Here
+                        </button>
+                    </a>
+                </div>
+
+                <div className="home-buttons-container">
                     <h4>
                         ESG Risk Analysis
                     </h4>
