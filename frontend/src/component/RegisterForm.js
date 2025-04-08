@@ -14,13 +14,6 @@ function RegistrationForm() {
 
   const [errors, setErrors] = useState({});
 
-  //make select element same size as the input fields
-  useEffect(()=>{
-    const select = document.querySelector('select');
-    const input = document.querySelector('input');
-    select.style.width = input.clientWidth + 'px';
-  }, [])
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -84,7 +77,7 @@ function RegistrationForm() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <div className = "form-item">
           <div className = "form-input-error-container">
             <input
@@ -121,6 +114,7 @@ function RegistrationForm() {
               value={formData.password}
               onChange={handleChange}
               placeholder='Password'
+              autoComplete="new-password"
             />
             {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
           </div>
@@ -135,6 +129,7 @@ function RegistrationForm() {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder='Confirm Password'
+              
             />
             {errors.confirmPassword && <div style={{ color: 'red' }}>{errors.confirmPassword}</div>}
           </div>
