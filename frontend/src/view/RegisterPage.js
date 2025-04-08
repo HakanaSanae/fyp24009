@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import RegisterForm from "../component/RegisterForm.js";
 import { useNavigate } from 'react-router-dom';
 
-function RegisterPage({account, setAccount}) { 
+function RegisterPage({ account }) { 
     const navigate = useNavigate();
     
     const loginStatus = () => {
@@ -29,7 +29,7 @@ function RegisterPage({account, setAccount}) {
                     
                 ) : 
                 (
-                    <RegisterForm setAccount = {setAccount}/>
+                    <RegisterForm />
                 )
                     
             }
