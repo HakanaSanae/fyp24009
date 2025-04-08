@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const testing = true; 
 const backendPath = testing ? 'http://localhost:8000/api' : 'http://fyp-laravel-server2-env.eba-3gaqk4pn.ap-northeast-3.elasticbeanstalk.com/api'; 
-// axios.defaults.withCredentials = true; 
+axios.defaults.withCredentials = true; 
 
 const handleError = (response, navigate, error = 'Internal Server Error') =>{
     
@@ -41,7 +41,6 @@ export const register = async (formData, navigate) => {
 export const logout = async (navigate) => {
     try{
         const response = await axios.get(`${backendPath}/logout`); 
-        navigate('/login');
         return response.data;
     } catch (error) {
         return handleError(error.response, navigate, 'Logout failed'); 
