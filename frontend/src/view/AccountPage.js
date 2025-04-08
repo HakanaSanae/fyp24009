@@ -42,11 +42,11 @@ function AccountPage({ setAccount }) {
             newErrors.email = 'Invalid email address.';
         }
 
-        if (formData.password !== '' && formData.confirmPassword !== '') {
+        if (formData.password !== '' || formData.confirmPassword !== '') {
             if (formData.password !== formData.confirmPassword) {
                 newErrors.confirmPassword = 'Passwords do not match.';
             } else if (formData.password.length < 8 || formData.password.length > 16 || !/\d/.test(formData.password) || !/[a-zA-Z]/.test(formData.password)) {
-                newErrors.password = 'Password must be 8 to 16 characters long and contain both letters and numbers.';
+                newErrors.password = 'Password must be: <ul><li> 8 to 16 characters long </li><li> Contains both letters and numbers.</li></ul>';
             }
         }
 
@@ -102,7 +102,7 @@ function AccountPage({ setAccount }) {
                     resetFormWithData(user_info, options);
                 }
                 else {
-                    console.error('Update failed:', data.message);
+                    alert(data.message);
                 }
             } catch (error) {
                 console.error('Error updating account data:', error);
@@ -130,6 +130,7 @@ function AccountPage({ setAccount }) {
                                 value={formData.username}
                                 onChange={handleChange}
                                 placeholder="User/Company Name"
+                                required
                             />
                             {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
                         </div>
@@ -143,6 +144,7 @@ function AccountPage({ setAccount }) {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Email Address"
+                                required
                             />
                             {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
                         </div>
@@ -159,6 +161,7 @@ function AccountPage({ setAccount }) {
                                 placeholder="Enter New Password"
                                 autoComplete="new-password"
                             />
+                            {errors.password && <div style={{ color: 'red'}} dangerouslySetInnerHTML={{ __html: errors.password }}></div>}
                         </div>
                     </div>
 
