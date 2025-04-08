@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class CorsHelper
@@ -15,21 +16,23 @@ class CorsHelper
      */
     public function handle(Request $request, Closure $next)
     {
+        $allowedOrigins = ['http://127.0.0.1:3000', 'http://localhost:3000', env('APP_URL')];
+        $origin = $request->headers->get('Origin');
+
         $headers = [
-            'Access-Control-Allow-Origin' => '*',
             'Access-Control-Allow-Methods' => '*',
-            'Access-Control-Allow-Credentials' => true,
-            'Access-Control-Allow-Headers' => 'X-Requested-With,Content-Type,X-Token-Auth,Authorization',
+            'Access-Control-Allow-Credentials' => 'true',
+            'Access-Control-Allow-Headers' => 'X-Requested-With,Content-Type,X-Token-Auth,Authorization,X-XSRF-TOKEN',
             'Accept' => 'application/json',
         ];
 
+        if (in_array($origin, $allowedOrigins)) {
+            $headers['Access-Control-Allow-Origin'] = $origin;
+        }
+
         if ($request->isMethod('OPTIONS')) {
-            return response()->json(['status' => 'OK'], 200)
-                ->withHeaders([
-                    'Access-Control-Allow-Origin' => '*',
-                    'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS, PUT, DELETE',
-                    'Access-Control-Allow-Headers' => 'Content-Type, Authorization',
-                ]);
+            return response('', 204)
+                ->withHeaders($headers);
         }
 
         return $next($request)
