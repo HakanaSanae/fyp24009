@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import apiClient from '../interface/apiClient';
+import { register } from '../interface/apiClient';
+import { useNavigate } from 'react-router-dom';
 
-function RegistrationForm({setAccount}) {
+function RegistrationForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '', 
     email: '',
@@ -62,16 +64,15 @@ function RegistrationForm({setAccount}) {
     
     if (validate()) {
       try {
-        const data = await apiClient.register({
+        const data = await register({
             username: formData.username,
             email: formData.email,
             password: formData.password,
             type: formData.type
-        }); 
+        }, navigate); 
         if (data.success) {
           localStorage.setItem('account', data.name);
-            setAccount(data.name);
-            console.log('Registration successful:', data);
+          navigate('/dashboard');
         } else {
             console.error('Registration failed:', data.message);
         }
@@ -85,12 +86,12 @@ function RegistrationForm({setAccount}) {
     <div>
       <form onSubmit={handleSubmit}>
         <div className = "form-item">
-          <label>User/Company Name</label>
           <div className = "form-input-error-container">
             <input
               type="username"
               name="username"
               value={formData.username}
+              placeholder='User/Company Name'
               onChange={handleChange}
             />
             {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
@@ -99,13 +100,13 @@ function RegistrationForm({setAccount}) {
         </div>
 
         <div className = "form-item">
-          <label>Email Address</label>
           <div className = "form-input-error-container">
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder='Email Address'
             />
             {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
           </div>
@@ -113,13 +114,13 @@ function RegistrationForm({setAccount}) {
         </div>
 
         <div className = "form-item">
-          <label>Password</label>
           <div className = "form-input-error-container">
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
+              placeholder='Password'
             />
             {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
           </div>
@@ -127,13 +128,13 @@ function RegistrationForm({setAccount}) {
         </div>
 
         <div className = "form-item">
-          <label>Confirm Password</label>
           <div className = "form-input-error-container">
             <input
               type="password"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
+              placeholder='Confirm Password'
             />
             {errors.confirmPassword && <div style={{ color: 'red' }}>{errors.confirmPassword}</div>}
           </div>
@@ -141,7 +142,6 @@ function RegistrationForm({setAccount}) {
         </div>
 
         <div className = "form-item">
-          <label htmlFor="type">Account Type:</label>
           <select
             name="type"
             value={formData.type}
@@ -157,10 +157,11 @@ function RegistrationForm({setAccount}) {
           <button type="submit">Register</button>
         </div>
 
+        <p>
+          Already have an account? Click <a href="/login">here</a> to login.
+        </p>
+
       </form>
-      <p>
-        Already have an account? Click <a href="/login">here</a> to login.
-      </p>
     </div>
     
   );

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import apiClient from '../interface/apiClient';
+import { login } from '../interface/apiClient';
+import { useNavigate } from 'react-router-dom';
 
-function LoginForm({setAccount}){
+function LoginForm(){
+    const navigate = useNavigate();
     const [errorMes, setErrorMes] = useState(null);
 
     const [formData, setFormData] = useState({
@@ -19,42 +21,42 @@ function LoginForm({setAccount}){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await apiClient.login({
+            const data = await login({
                 email: formData.email,
                 password: formData.password,
-            }); 
+            }, navigate); 
             if (data.success) {
                 localStorage.setItem('account', data.name);
-                setAccount(data.name);
+                navigate('/dashboard');
             } else {
                 setErrorMes("Email or Password incorrect. <br> Please try again."); 
             }
             
         } catch (error) {
-            console.log(error);
+            setErrorMes(error);
         }
     }
 
     return (
-        <div>
+        <>
             <form onSubmit={handleSubmit}>
                 <div className="form-item">
-                    <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 
                         name="email" 
                         value = {formData.email}
                         onChange= {handleChange}
+                        placeholder="Email"
                         required 
                     />
                 </div>
                 <div className="form-item">
-                    <label for="password">Password:</label>
                     <input 
                         type="password" 
                         name="password"
                         value={formData.password}
                         onChange={handleChange} 
+                        placeholder="Password"
                         required 
                     />
                 </div>
@@ -68,13 +70,15 @@ function LoginForm({setAccount}){
                 <div className="form-item">
                     <button type="submit">Login</button>
                 </div>
+
+                <p>
+                    Don't have an account? Click <a href="/register">here</a> to register. 
+                </p>
                 
             </form>
             
-            <p >
-                Don't have an account? Click <a href="/register">here</a> to register. 
-            </p>
-        </div>
+            
+        </>
     )
 }
 
