@@ -31,23 +31,33 @@ function App() {
                 <Route path="login" element={ account ? <Navigate to='/dashboard' replace/> : <LoginPage />} />
                 <Route path="register" element={ account ? <Navigate to='/dashboard' replace/> : <RegisterPage /> } />
                 <Route path="account" element={ account ? <AccountPage setAccount={setAccount}/> : <Navigate to='/login' replace />} />
-                <Route path="dashboard" element={ account ? <DashboardRoutes account={account} /> : <Navigate to="/login" replace />} />
+                <Route path="dashboard/*" element={ account ? <DashboardRoutes /> : <Navigate to="/login" replace />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
         </Routes>
     )
 }
 
-function DashboardRoutes({ account }) {
+function DashboardRoutes() {
+    const dashboardRoutes = [
+        { path: "YOY-ESG-Change", element: <ESGDashBoard /> },
+        { path: "Sector-Wise-ESG-Performance", element: <ESGDashBoard /> },
+        { path: "ESG-Score-Breakdown", element: <ESGDashBoard /> },
+        { path: "ESG-Score-Distribution", element: <ESGDashBoard /> },
+        { path: "Custom-Comparison", element: <ESGDashBoard /> },
+        { path: "Overall-ESG-Performance", element: <ESGDashBoard /> },
+    ];
+
     return (
         <Routes>
             <Route index element={<HomePage />} />
-            <Route path="Overall-ESG-Performance" element={<ESGDashBoard account={account} />} />
-            <Route path="Sector-based-Comparison" element={<h1>Sector based comparison</h1>} />
-            <Route path="Top-Bottom-Performers" element={<h1>Top bottom performers</h1>} />
-            <Route path="ESG-Score-Breakdown" element={<h1>ESG Score breakdown</h1>} />
-            <Route path="Sector-Industry-Leaders" element={<h1>ESG Sector industry leaders</h1>} />
             <Route path="ESG-Risk-Analysis" element={<RiskAnalysisPage />} />
+            {
+                dashboardRoutes.map((route) => (
+                    <Route key={route.path} path={route.path} element={route.element} />
+                ))
+            }
+            <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
     );
 }
