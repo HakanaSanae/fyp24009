@@ -75,9 +75,9 @@ function HomePage() {
 
                 <div className="home-buttons-container">
                     <h4>
-                        ESG Risk Analysis
+                        ESG Performance Analysis
                     </h4>
-                    <a href="/dashboard/ESG-Risk-Analysis">
+                    <a href="/dashboard/ESG-performance-Analysis">
                         <button variant="primary">
                             View Here
                         </button>
