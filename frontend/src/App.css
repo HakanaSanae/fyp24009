@@ -62,9 +62,60 @@ header{
   float:right; 
 }
 
+.sidebar-content{
+  display: none; 
+  width:fit-content; 
+  position: fixed; 
+  right: 0px; 
+  top: 0px;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  opacity: 0;
+  height: 100vh; 
+  z-index: 1000; 
+  background-color: #c4f5a4;
+  transition-property: display opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  transition-behavior: allow-discrete;
+}
+
+.sidebar-content[open]{
+  display: flex; 
+  opacity: 1;
+
+  @starting-style{
+    opacity: 0;
+  }
+}
+
+.top-nav-sidebar-button{ 
+  width: 100%;
+}
+
+.top-nav-sidebar-switch{
+  display: none; 
+  margin-right: 4vw; 
+}
+
+.top-nav-sidebar-switch img{
+  width: auto; 
+  height: auto; 
+  max-width: 5vw;
+  max-height: 5vh;
+  aspect-ratio: 1/1;
+}
+
+.sidebar-content a{
+  width: calc(100% - 8vw);
+  margin: 3vh 4vw;
+}
+
 #nav-icon{
   height: auto; 
-  width: 120px;
+  width: 20vw;
+  max-width: 150px;
 }
 
 .top-nav-button{
@@ -141,8 +192,6 @@ form{
   margin-left: 10px;
   font-family: "Inter", sans-serif;
 }
-
-
 
 #create_button {
   text-align: right;
@@ -301,7 +350,7 @@ a {
   opacity: 0.9;
 }
 
-.risk-analysis-information{
+.performance-analysis-information{
   display: flex; 
   flex-direction: column;
   justify-content: space-evenly;
@@ -317,19 +366,19 @@ a {
   margin: 2vh 0px; 
 }
 
-.risk-analysis-page input {
+.performance-analysis-page input {
   margin: 2vh 0; 
 }
 
-.risk-analysis-item{
+.performance-analysis-item{
   text-align: left;
 }
 
-.risk-analysis-item h3 {
+.performance-analysis-item h3 {
   color: rgb(211, 25, 25);
 }
 
-.risk-analysis-title{
+.performance-analysis-title{
   justify-self: center;
   align-self: center;
 }
@@ -365,5 +414,19 @@ a {
 @media (max-width: 800px) {
   .home-page-item-container{
     grid-template-columns: auto;
+  }
+}
+
+.nav-bar-fade-out{
+  animation: nav-bar-fade-out 0.5s ease-in-out;
+}
+
+@media (max-width: 950px) {
+  .topNavButtons{
+    display: none; 
+  }
+
+  .top-nav-sidebar-switch, .top-nav-sidebar{
+    display: block;
   }
 }

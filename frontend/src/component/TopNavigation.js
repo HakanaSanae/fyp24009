@@ -4,9 +4,8 @@ import icon from '../Picture-1.jpg';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../interface/apiClient';
 
-function TopNavigation({ account }) {
+function TopNavigation({ account, isBarOpen, setIsBarOpen }) {
     const navigate = useNavigate();
-
     const logoutAction = async () => {
         const data = await logout(navigate);
         if (data.success) {
@@ -17,6 +16,10 @@ function TopNavigation({ account }) {
             localStorage.removeItem('account');
             navigate('/login');
         }
+    }
+
+    const switchBar = () => {
+        setIsBarOpen(!isBarOpen);
     }
 
     return (
@@ -49,9 +52,9 @@ function TopNavigation({ account }) {
                     account ?
                         (
 
-                            <a href="/dashboard/ESG-Risk-Analysis">
+                            <a href="/dashboard/ESG-performance-Analysis">
                                 <Button variant="primary" className="top-nav-button">
-                                    ESG Risk Analysis
+                                    ESG Performance Analysis
                                 </Button>
                             </a>
 
@@ -84,9 +87,10 @@ function TopNavigation({ account }) {
                         </a>
                     )
                 }
-
-
             </div>
+            <button onClick = {switchBar} className="top-nav-sidebar-switch"> 
+                <img src='/menu_icon.png' />
+            </button>
         </div>
     )
 }
