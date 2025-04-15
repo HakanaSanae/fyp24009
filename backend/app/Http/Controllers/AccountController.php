@@ -227,4 +227,26 @@ class AccountController
             ];
         }
     }
+
+    public function getMe(){
+        $user = Auth::user();
+        if ($user instanceof LoginDetails){
+            return response()->json([
+                'success' => true,
+                'message' => [
+                    'user_info' => [
+                        'name' => $user->account->register->name,
+                        'email' => $user->email,
+                        'type' => $user->account->type_id
+                    ]
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Not yet logged in.'
+            ]);
+        }
+
+    }
 }
