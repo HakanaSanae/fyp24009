@@ -8,7 +8,7 @@ import LoginPage from '../view/LoginPage.js';
 import RegisterPage from '../view/RegisterPage.js';
 import ESGDashBoard from '../component/ESGDashBoard.js';
 import HomePage from '../view/HomePage.js';
-import RiskAnalysisPage from '../view/RiskAnalysisPage.js';
+import PerformanceAnalysisPage from '../view/PerformanceAnalysisPage.js';
 import AccountPage from '../view/AccountPage.js';
 import { useLocation } from 'react-router'
 
@@ -51,7 +51,7 @@ function DashboardRoutes() {
     return (
         <Routes>
             <Route index element={<HomePage />} />
-            <Route path="ESG-Risk-Analysis" element={<RiskAnalysisPage />} />
+            <Route path="ESG-performance-Analysis" element={<PerformanceAnalysisPage />} />
             {
                 dashboardRoutes.map((route) => (
                     <Route key={route.path} path={route.path} element={route.element} />

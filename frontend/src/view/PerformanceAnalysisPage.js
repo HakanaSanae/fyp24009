@@ -1,16 +1,16 @@
 import React, { useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { submitRiskAnalysisFile } from '../interface/apiClient';
-import RiskAnalysisInformation from '../component/RiskAnalysisInformation';
+import { submitPerformanceAnalysisFile } from '../interface/apiClient';
+import PerformanceAnalysisInformation from '../component/PerformanceAnalysisInformation';
 
-function RiskAnalysisPage() {
+function PerformanceAnalysisPage() {
     
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [E_data, setEData] = useState(null);
     const [S_data, setSData] = useState(null);  
     const [G_data, setGData] = useState(null);
-    const [risk_level, setRiskLevel] = useState(null);
+    const [performance_level, setPerformanceLevel] = useState(null);
     const fileInputRef = useRef(null);
     const [resetSubmission, setResetSubmission] = useState(false); 
 
@@ -24,7 +24,7 @@ function RiskAnalysisPage() {
         setEData(null);
         setSData(null);
         setGData(null);
-        setRiskLevel(null);
+        setPerformanceLevel(null);
         fileInputRef.current.value = null;
         setResetSubmission(false);
     }; 
@@ -34,13 +34,13 @@ function RiskAnalysisPage() {
         formData.append('file', file);
 
         try {
-            const response = await submitRiskAnalysisFile(formData, navigate);
+            const response = await submitPerformanceAnalysisFile(formData, navigate);
 
             if (response.success) {
                 console.log("File uploaded successfully");
                 fileInputRef.current.value = null;
                 const data = response.message;
-                setRiskLevel(data.Total_Risk_Level);
+                setPerformanceLevel(data.Total_Performance_Level);
                 setEData(data.E);
                 setSData(data.S);
                 setGData(data.G);
@@ -55,28 +55,28 @@ function RiskAnalysisPage() {
     }
 
     return (
-        <div className = "risk-analysis-page">
+        <div className = "performance-analysis-page">
             
             {
-                risk_level && (
-                    <div className="risk-level" style={{justifySelf: "center"}}>
-                        <h1>Total Risk Level: {risk_level}</h1>
+                performance_level && (
+                    <div className="performance-level" style={{justifySelf: "center"}}>
+                        <h1>Total performance Level: {performance_level}</h1>
                     </div>
                 )
             }
             {
                 E_data && (
-                    <RiskAnalysisInformation type="Environmental" data={E_data} />
+                    <PerformanceAnalysisInformation type="Environmental" data={E_data} />
                 )
             }
             {
                 S_data && (
-                    <RiskAnalysisInformation type="Social" data={S_data} />
+                    <PerformanceAnalysisInformation type="Social" data={S_data} />
                 )   
             }
             {
                 G_data && (
-                    <RiskAnalysisInformation type="Governance" data={G_data} />
+                    <PerformanceAnalysisInformation type="Governance" data={G_data} />
                 )
             }
 
@@ -105,4 +105,4 @@ function RiskAnalysisPage() {
     )
 }
 
-export default RiskAnalysisPage;
+export default PerformanceAnalysisPage;
