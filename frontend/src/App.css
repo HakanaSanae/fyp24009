@@ -383,6 +383,20 @@ a {
   align-self: center;
 }
 
+.loading-mask{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  position: fixed; 
+  top: 0px; 
+  left: 0px; 
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(255,255,255,0.5);
+  z-index: 1001; 
+  opacity: 0.8; 
+}
+
 @keyframes wave {
   2% {
       transform: translateX(1);

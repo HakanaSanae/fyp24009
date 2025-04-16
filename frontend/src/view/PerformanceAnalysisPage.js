@@ -10,13 +10,16 @@ function PerformanceAnalysisPage() {
     const [E_data, setEData] = useState(null);
     const [S_data, setSData] = useState(null);  
     const [G_data, setGData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [performance_level, setPerformanceLevel] = useState(null);
     const fileInputRef = useRef(null);
     const [resetSubmission, setResetSubmission] = useState(false); 
 
     const handleFileUpload = (event) => {
+        setIsLoading(true);
         setFile(event.target.files[0]);
         setResetSubmission(true); 
+        setIsLoading(false);
     };
 
     const reset = () => {
@@ -30,6 +33,7 @@ function PerformanceAnalysisPage() {
     }; 
 
     const submitFile = async () => {
+        setIsLoading(true);
         const formData = new FormData();
         formData.append('file', file);
 
@@ -49,59 +53,70 @@ function PerformanceAnalysisPage() {
             } else {
                 console.error("File upload failed");
             }
+            setIsLoading(false);
         } catch (error) {
             console.error("Error uploading file:", error);
+            setIsLoading(false);
         }
     }
 
     return (
-        <div className = "performance-analysis-page">
-            
-            {
-                performance_level && (
-                    <div className="performance-level" style={{justifySelf: "center"}}>
-                        <h1>Total performance Level: {performance_level}</h1>
-                    </div>
-                )
-            }
-            {
-                E_data && (
-                    <PerformanceAnalysisInformation type="Environmental" data={E_data} />
-                )
-            }
-            {
-                S_data && (
-                    <PerformanceAnalysisInformation type="Social" data={S_data} />
-                )   
-            }
-            {
-                G_data && (
-                    <PerformanceAnalysisInformation type="Governance" data={G_data} />
-                )
-            }
+        <>
+            <div className = "performance-analysis-page">
+                
+                {
+                    performance_level && (
+                        <div className="performance-level" style={{justifySelf: "center"}}>
+                            <h1>Total Performance Level: {performance_level}</h1>
+                        </div>
+                    )
+                }
+                {
+                    E_data && (
+                        <PerformanceAnalysisInformation type="Environmental" data={E_data} />
+                    )
+                }
+                {
+                    S_data && (
+                        <PerformanceAnalysisInformation type="Social" data={S_data} />
+                    )   
+                }
+                {
+                    G_data && (
+                        <PerformanceAnalysisInformation type="Governance" data={G_data} />
+                    )
+                }
 
-            <input
-                type="file"
-                accept=".pdf"
-                onChange={handleFileUpload}
-                ref = {fileInputRef}
-            />
+                <input
+                    type="file"
+                    accept=".pdf"
+                    onChange={handleFileUpload}
+                    ref = {fileInputRef}
+                />
 
-            <div style={{ display: 'flex', justifyContent: 'space-between' , marginBottom: "3vh"}}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' , marginBottom: "3vh"}}>
 
-                {resetSubmission && (
-                    <button onClick={reset}>Reset</button>
-                )}
+                    {resetSubmission && (
+                        <button onClick={reset}>Reset</button>
+                    )}
 
-                {file && (
-                    <button onClick={submitFile}>Submit File</button>
-                )}
+                    {file && (
+                        <button onClick={submitFile}>Submit File</button>
+                    )}
 
+                    
+                </div>
+                
                 
             </div>
-            
-
-        </div>
+            {isLoading && (
+                <div className="loading-mask" >
+                    <h2>Loading...</h2>
+                </div>
+            )}
+        </>
+        
+        
     )
 }
 
