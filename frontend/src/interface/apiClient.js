@@ -2,7 +2,7 @@ import axios from 'axios';
 import { S3Client, CreateMultipartUploadCommand, UploadPartCommand, CompleteMultipartUploadCommand } from '@aws-sdk/client-s3';
 import { crc32 } from 'crc';
 
-const testing = true; 
+const testing = false; 
 const backendPath = testing ? 'http://localhost:8000/api' : 'http://fyp-laravel-server2-env.eba-3gaqk4pn.ap-northeast-3.elasticbeanstalk.com/api'; 
 axios.defaults.withCredentials = true; 
 
