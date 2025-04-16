@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { S3Client, CreateMultipartUploadCommand, UploadPartCommand, CompleteMultipartUploadCommand } from '@aws-sdk/client-s3';
+import { crc32 } from 'crc';
 
 const testing = true; 
 const backendPath = testing ? 'http://localhost:8000/api' : 'http://fyp-laravel-server2-env.eba-3gaqk4pn.ap-northeast-3.elasticbeanstalk.com/api'; 
 axios.defaults.withCredentials = true; 
+
 
 const handleError = (response, navigate, error = 'Internal Server Error') =>{
     
@@ -73,9 +76,83 @@ export const logout = async (navigate) => {
 }
 
 export const submitPerformanceAnalysisFile = async (formData, navigate) => {
+    const file = formData.get('file');
+    const fileName = `${Date.now()}-${file.name}`;
+
+    const credentials = {
+        accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+    };
+
+    const s3Client = new S3Client({
+        region: process.env.REACT_APP_S3_REGION,
+        credentials: credentials,
+    });
+
     try {
-        await getMe(navigate); 
-        const response = await axios.post(`${backendPath}/performance-analysis`, formData); 
+        // await getMe(navigate);
+        const partSize = 5 * 1024 * 1024; 
+        const numParts = Math.ceil(file.size / partSize);
+        const promises = [];
+
+        const filePath = `https://${process.env.REACT_APP_S3_BUCKET}.s3.${process.env.REACT_APP_S3_REGION}.amazonaws.com/${fileName}`;
+        const formDataToSend = new FormData();
+        formDataToSend.append('file_name', fileName);
+        formDataToSend.append(
+            'file_path',
+            filePath
+        );
+        formDataToSend.append('file', file);
+
+        const createMultipartUploadResponse = await s3Client.send(new CreateMultipartUploadCommand({
+            Bucket: process.env.REACT_APP_S3_BUCKET,
+            Key: fileName,
+            ContentType: file.type,
+        }));
+
+        const uploadId = createMultipartUploadResponse.UploadId;
+
+        for (let partNumber = 1; partNumber <= numParts; partNumber++) {
+            const start = (partNumber - 1) * partSize;
+            const end = Math.min(start + partSize, file.size);
+            const part = file.slice(start, end);
+
+            const arrayBuffer = await part.arrayBuffer();
+            const uint8Array = new Uint8Array(arrayBuffer);
+            const checksumHex = crc32(uint8Array).toString(16);
+            const checksumBinary = new Uint8Array(
+                checksumHex.match(/.{1,2}/g).map((byte) => parseInt(byte, 16))
+            );
+            const checksumBase64 = btoa(String.fromCharCode(...checksumBinary));
+
+            promises.push(
+                s3Client.send(new UploadPartCommand({
+                    Bucket: process.env.REACT_APP_S3_BUCKET,
+                    Key: fileName,
+                    PartNumber: partNumber,
+                    UploadId: uploadId,
+                    Body: part,
+                    ChecksumCRC32: checksumBase64, 
+                }))
+            );
+        }
+
+        const partResponses = await Promise.all(promises);
+
+        await s3Client.send(new CompleteMultipartUploadCommand({
+            Bucket: process.env.REACT_APP_S3_BUCKET,
+            Key: fileName,
+            UploadId: uploadId,
+            MultipartUpload: {
+                Parts: partResponses.map((response, index) => ({
+                    ETag: response.ETag,
+                    PartNumber: index + 1,
+                })),
+            },
+        }));
+
+        const response = await axios.post(`${backendPath}/performance-analysis`, formDataToSend);
+        
         return response.data;
     } catch (error) {
         return handleError(error.response, navigate, 'File upload failed'); 
