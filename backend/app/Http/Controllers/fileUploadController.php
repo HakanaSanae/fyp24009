@@ -12,20 +12,13 @@ class fileUploadController
     public function performanceAnalysis(Request $request)
     {
         ini_set('max_execution_time', 300);
-
-        //TODO: store fileName and filePath in database for retrieving later
-//        $filePath = $request->get('file_path');
-//        $fileName = $request->get('file_name');
-        $file = $request->file('file');
-
-//        Log::info('File Path: ' . $filePath);
-//        Log::info('File Name: ' . $fileName);
+        $filePath = $request->get('file_path');
 
         try {
             $ch = curl_init();
 
             $postData = [
-                'file' => new CURLFile($file->getRealPath()),
+                'file' => new CURLFile($filePath),
             ];
 
             curl_setopt_array($ch, [
