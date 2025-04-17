@@ -2,7 +2,7 @@ import axios from 'axios';
 import { S3Client, CreateMultipartUploadCommand, UploadPartCommand, CompleteMultipartUploadCommand } from '@aws-sdk/client-s3';
 import { crc32 } from 'crc';
 
-const testing = false; 
+const testing = true; 
 const backendPath = testing ? 'http://localhost:8000/api' : 'https://dhzk7e8q9584c.cloudfront.net/api'; 
 axios.defaults.withCredentials = true; 
 
@@ -101,21 +101,16 @@ export const submitPerformanceAnalysisFile = async (formData, navigate) => {
 
         const filePath = `https://${process.env.REACT_APP_S3_BUCKET}.s3.${process.env.REACT_APP_S3_REGION}.amazonaws.com/${fileName}`;
         const formDataToSend = new FormData();
-        formDataToSend.append('file_name', fileName);
         formDataToSend.append(
             'file_path',
             filePath
         );
-        formDataToSend.append('file', file);
-        console.log('formData set'); 
 
         const createMultipartUploadResponse = await s3Client.send(new CreateMultipartUploadCommand({
             Bucket: process.env.REACT_APP_S3_BUCKET,
             Key: fileName,
             ContentType: file.type,
         }));
-
-        console.log('response get'); 
 
         const uploadId = createMultipartUploadResponse.UploadId;
 
