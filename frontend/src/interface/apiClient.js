@@ -91,6 +91,8 @@ export const submitPerformanceAnalysisFile = async (formData, navigate) => {
         credentials: credentials,
     });
 
+    console.log(process.env.REACT_APP_S3_REGION)
+
     try {
         // await getMe(navigate);
         const partSize = 5 * 1024 * 1024; 
