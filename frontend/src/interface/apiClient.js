@@ -3,7 +3,7 @@ import { S3Client, CreateMultipartUploadCommand, UploadPartCommand, CompleteMult
 import { crc32 } from 'crc';
 
 const testing = false; 
-const backendPath = testing ? 'http://localhost:8000/api' : 'http://fyp-laravel-server2-env.eba-3gaqk4pn.ap-northeast-3.elasticbeanstalk.com/api'; 
+const backendPath = testing ? 'http://localhost:8000/api' : 'https://dhzk7e8q9584c.cloudfront.net/api'; 
 axios.defaults.withCredentials = true; 
 
 
