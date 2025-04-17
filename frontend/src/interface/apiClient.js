@@ -77,7 +77,9 @@ export const logout = async (navigate) => {
 
 export const submitPerformanceAnalysisFile = async (formData, navigate) => {
     const file = formData.get('file');
+    console.log('file get'); 
     const fileName = `${Date.now()}-${file.name}`;
+    console.log('filename get'); 
 
     const credentials = {
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -103,12 +105,15 @@ export const submitPerformanceAnalysisFile = async (formData, navigate) => {
             filePath
         );
         formDataToSend.append('file', file);
+        console.log('formData set'); 
 
         const createMultipartUploadResponse = await s3Client.send(new CreateMultipartUploadCommand({
             Bucket: process.env.REACT_APP_S3_BUCKET,
             Key: fileName,
             ContentType: file.type,
         }));
+
+        console.log('response get'); 
 
         const uploadId = createMultipartUploadResponse.UploadId;
 

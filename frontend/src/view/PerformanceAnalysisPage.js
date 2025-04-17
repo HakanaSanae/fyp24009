@@ -38,6 +38,7 @@ function PerformanceAnalysisPage() {
         formData.append('file', file);
 
         try {
+            console.log('starting file upload...');
             const response = await submitPerformanceAnalysisFile(formData, navigate);
 
             if (response.success) {
